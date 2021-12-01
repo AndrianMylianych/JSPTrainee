@@ -6,11 +6,24 @@
 //8^2 = 8 x 8 = 64
 
 function exponentComputing (number, exponent) {
-    if ( exponent == 1) {
+  if (exponent > 0) {  
+    if ( exponent === 1) {
         return number;
     } else {
         return number * exponentComputing(number, exponent - 1);
     }
+
+  } else if (exponent < 0) {
+    if ( exponent === -1) {
+        return number;
+    } else {
+        return number * exponentComputing(number, exponent + 1);
+    }
+  
+  } else {
+    return 0
+  }
+
 }
 
 console.log(exponentComputing(8, 2));
@@ -18,11 +31,11 @@ console.log(exponentComputing(8, 2));
 // 2. Write functions min and max that will find min and max number in array using apply
 
 function findMaxAndMinNumber (arr) {
-    let maxNumber = Math.max.apply(null, arr);
-    let minNumber = Math.min.apply(null, arr);
-    return (
-        [maxNumber, minNumber]
-        );
+  let maxNumber = Math.max.apply(null, arr);
+  let minNumber = Math.min.apply(null, arr);
+  return (
+      [maxNumber, minNumber]
+      );
 }
 
 console.log(findMaxAndMinNumber([23, 24, 25]));
@@ -32,43 +45,37 @@ console.log(findMaxAndMinNumber([23, 24, 25]));
 //    Please make examples for three different cars
 
 function displayCarDetails (ownerName) {
-    return ( `registration number: ${this.registrationNumber}, 
-              brand: ${this.brand},
-              color: ${this.color}`);
+  return ( `${ownerName}'s car:
+            registration number: ${this.registrationNumber}, 
+            brand: ${this.brand},
+            color: ${this.color}`);
 }
 
+function Driver (registrationNumber, brand, color) {
+this.registrationNumber = registrationNumber;
+this.brand = brand;
+this.color = color 
+}
 
-const mike = {
-    registrationNumber: 044503,
-    brand: 'Volvo',
-    color: 'gray'
-};
+const mikeCar = new Driver (044503, "Volvo", "gray");
 
-const tom = {
-    registrationNumber: 5443662,
-    brand: 'Renault',
-    color: 'white'
-};
+const tomCar = new Driver (5443662, "Renault", "white");
 
-const brad = {
-    registrationNumber: 1126643,
-    brand: 'Ford',
-    color: 'red'
-};
+const bradCar = new Driver (1126643, "Ford", "red");
 
-console.log(displayCarDetails.call(mike));
-console.log(displayCarDetails.call(tom));
-console.log(displayCarDetails.call(brad));
+console.log(displayCarDetails.call(mikeCar, "Mike"));
+console.log(displayCarDetails.call(tomCar, "Tom"));
+console.log(displayCarDetails.call(bradCar, "Brad"));
 
 // 4.We want this code to log out “hey amy”, but it logs out “hey arnold” - fix that 
- 
+
 
 function greet (person) {
-  if (person.name ==  'amy' ) {
-    return 'hey amy'
-  } else {
-    return 'hey arnold'
-  }
+if (person.name ==  'amy' ) {
+  return 'hey amy'
+} else {
+  return 'hey arnold'
+}
 }
 
 const amy = {name: 'amy'}
@@ -83,12 +90,11 @@ console.log(greet(amy));
 // варіант 1
 
 for (var i = 0; i < 4; i++) {
-  setTimeout(() => 0, console.log(i))
+setTimeout(() => 0, console.log(i))
 }
 
 // варіант 2
 
 for (let i = 0; i < 4; i++) {
-    setTimeout(() => console.log(i), 0)
-  }
-  
+  setTimeout(() => console.log(i), 0)
+}
